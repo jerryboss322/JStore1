@@ -3,6 +3,7 @@
     "api/index.php": { "runtime": "vercel-php@0.7.3" }
   },
   "routes": [{ "src": "/(.*)", "dest": "/api/index.php" }],
-  "installCommand": "composer install --no-dev --optimize-autoloader",
-  "buildCommand": "php artisan config:cache"
+  "builds": [
+    { "src": "composer.json", "use": "@vercel/php" }
+  ]
 }
