@@ -1,0 +1,15 @@
+[phases.install]
+cmds = [
+  "mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/sessions storage/framework/views",
+  "chmod -R 775 bootstrap storage",
+  "composer install --no-dev --no-interaction --no-scripts"
+]
+
+[phases.build]
+cmds = [
+  "php artisan package:discover",
+  "php artisan config:cache"
+]
+
+[start]
+cmd = "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"
